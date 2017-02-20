@@ -42,7 +42,7 @@ $(document).ready(function(e) {
                         tasks[i] = item;
 //                        console.log(tasks[i]['task']);
 
-                        $("#sortable").append("<li class='ui-state-default'><div class='checkbox'><input class='label-task form-control' readonly='true' type='text' value='" + tasks[i]['task'] +"' ondblclick='this.readOnly=\"\";'/><p class='task-id' style='display: none;'>"+ tasks[i]['id']+ "</p><br><button type='button' class='deleteTask btn btn-danger' title='Supprimer'><i class='glyphicon glyphicon-trash'></i></button><button type='button' class='modifyTask btn btn-warning' title='Modifier'><i class='glyphicon glyphicon-pencil'></i></button></div></li>");
+                        $("#sortable").append("<li class='ui-state-default'><div class='task-bloc'><input class='label-task form-control' readonly='true' type='text' value='" + tasks[i]['task'] +"' ondblclick='this.readOnly=\"\";'/><p class='task-id' style='display: none;'>"+ tasks[i]['id']+ "</p><button type='button' class='deleteTask btn btn-danger' title='Supprimer'><i class='glyphicon glyphicon-trash'></i></button><button type='button' class='modifyTask btn btn-warning' title='Modifier'><i class='glyphicon glyphicon-pencil'></i></button></div></li>");
 
                     });
                     countTodos();
