@@ -11,16 +11,13 @@ include_once 'header.php';
         <div class="col-md-6 col-md-offset-3">
             <div class="todolist not-done">
                 <h1>Todos</h1>
-                <form action="" method="post">
-                    <input type="text" class="form-control add-todo" placeholder="Add todo">
-                    <!--<button id="checkAll" class="btn btn-success">Mark all as done</button>-->
-                    <button id="addTask" class="btn btn-success">Ajouter une tâche</button>
+                <form id="add-form" action="" method="post">
+                    <input type="text" name="task" class="form-control add-todo" placeholder="Add todo">
                 </form>
-
+                <button id="addTask" class="btn btn-success">Ajouter une tâche</button>
 
                 <hr>
                 <ul id="sortable" class="list-unstyled">
-
                 </ul>
                 <div class="todo-footer">
                     <strong><span class="count-todos"></span></strong> Items Left
