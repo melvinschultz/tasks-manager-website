@@ -137,6 +137,12 @@ li.ui-state-default:last-child{
 #done-items li:last-child{
     border-bottom:none;
 }
-#checkAll {
+#addTask {
     margin-top:10px;
+}
+.return {
+    margin-top: 10px;
+}
+.btn {
+    margin-right: 10px;
 }
