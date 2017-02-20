@@ -20,7 +20,7 @@ include_once 'header.php';
                 <ul id="sortable" class="list-unstyled">
                 </ul>
                 <div class="todo-footer">
-                    <strong><span class="count-todos"></span></strong> Items Left
+                    <strong><span class="count-todos"></span></strong> tâche(s) restante(s)
                 </div>
             </div>
             <a href="http://localhost/projects-oss/tasks-manager-website/login.php"><button type="button" class="return btn btn-info" title="Retour à la page d'authentification"><i class="glyphicon glyphicon-share-alt"></i></button></a>
