@@ -142,7 +142,14 @@ li.ui-state-default:last-child{
 }
 .return {
     margin-top: 10px;
+    float: right;
 }
 .btn {
     margin-right: 10px;
+}
+.glyphicon-share-alt {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
 }
