@@ -42,7 +42,7 @@ $(document).ready(function(e) {
                         tasks[i] = item;
 //                        console.log(tasks[i]['task']);
 
-                        $("#sortable").append("<li class='ui-state-default'><div class='checkbox'><p>" + tasks[i]['task'] +"</p><p class='task-id' style='display: none;'>"+ tasks[i]['id']+ "</p><button type='button' class='deleteTask btn btn-danger' title='Supprimer'><i class='glyphicon glyphicon-trash'></i></button><button type='button' class='modifyTask btn btn-warning' title='Modifier'><i class='glyphicon glyphicon-pencil'></i></button></div></li>");
+                        $("#sortable").append("<li class='ui-state-default'><div class='checkbox'><input class='label-task form-control' readonly='true' type='text' value='" + tasks[i]['task'] +"' ondblclick='this.readOnly=\"\";'/><p class='task-id' style='display: none;'>"+ tasks[i]['id']+ "</p><br><button type='button' class='deleteTask btn btn-danger' title='Supprimer'><i class='glyphicon glyphicon-trash'></i></button><button type='button' class='modifyTask btn btn-warning' title='Modifier'><i class='glyphicon glyphicon-pencil'></i></button></div></li>");
 
                     });
                     countTodos();
@@ -107,6 +107,50 @@ $(document).ready(function(e) {
             }
         });
     });
+
+    $('#sortable').on('dblclick', '.label-task', function() {
+        var originValue = $(this).val();
+
+        var taskId = $(this).next('.task-id').text();
+        console.log(taskId);
+
+        $(this).change(function () {
+            var val = $(this).val();
+
+            if (originValue != val) {
+                modifyTask(val, taskId);
+            }
+            // console.log(val);
+        });
+    });
+
+    var modifyTask = function (val, taskId) {
+        var urlmodify = 'http://localhost/projects-oss/tasks-manager-api/v1/tasks/'+taskId;
+        console.log(urlmodify);
+
+        $('.modifyTask').click(function (e) {
+            $.ajax({
+                type: 'PUT',
+                url: urlmodify,
+                data: { task: val },
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', apiKey);
+                },
+                success: function(data)
+                {
+                    console.log(data);
+                    location.reload();
+                },
+                error: function (error) {
+                    var parsedError = [];
+                    $.each(error, function(i, item){
+                        parsedError[i] = item;
+                    });
+                    console.log(parsedError);
+                }
+            });
+        });
+    };
 
     e.preventDefault(); // avoid to execute the actual submit of the form.
 });

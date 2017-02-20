@@ -153,3 +153,6 @@ li.ui-state-default:last-child{
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
 }
+.label-task {
+    width: 100%;
+}
