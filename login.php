@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <title>Titre de la page</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+<?php
 
-</head>
-<body>
+include_once 'header.php';
+
+?>
+
 <div class="container">
     <div class="row">
         <p id="success" class="success"></p>
@@ -85,90 +81,11 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="js/scripts.js"></script>
-<script>
-    // this is the id of the form
-    $("#login-form").submit(function(e) {
-        var url = "http://localhost/projects-oss/tasks-manager-api/v1/login"; // the script where you handle the form input.
+<?php
 
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: $("#login-form").serialize(), // serializes the form's elements.
-            success: function(data)
-            {
-//                console.log(data);
-                var parsedData = [];
-                $.each(data, function(i, item){
-                    parsedData[i] = item;
-                });
-//                console.log(parsedData);
+include_once 'footer.php';
 
-                if (parsedData['apiKey']) {
-                    window.location.href = 'http://localhost/projects-oss/tasks-manager-website/tasks.html'+"?&apiKey="+parsedData['apiKey'];
-                } else {
-                    $("#error").text(parsedData['message']);
-                }
-//                console.log(parsedData['apiKey']);
-            },
-            error: function (error) {
-//                console.log(error);
-                var parsedError = [];
-                $.each(error, function(i, item){
-                    parsedError[i] = item;
-                });
-//                console.log(parsedError);
+?>
 
-                // TODO: a afficher plus proprement
-                $("#error").text(parsedError['responseText']);
-            }
-        });
-
-        e.preventDefault(); // avoid to execute the actual submit of the form.
-    });
-
-    // this is the id of the form
-    $("#register-form").submit(function(e) {
-        var url = "http://localhost/projects-oss/tasks-manager-api/v1/register"; // the script where you handle the form input.
-
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: $("#register-form").serialize(), // serializes the form's elements.
-            success: function(data)
-            {
-                console.log(data);
-                var parsedData = [];
-                $.each(data, function(i, item){
-                    parsedData[i] = item;
-                });
-//                console.log(parsedData);
-
-                if (parsedData['error'] == false) {
-                    $("#success").text(parsedData['message']);
-
-                } else {
-                    $("#error").text(parsedData['message']);
-                }
-//                console.log(parsedData['apiKey']);
-            },
-            error: function (error) {
-//                console.log(error);
-                var parsedError = [];
-                $.each(error, function(i, item){
-                    parsedError[i] = item;
-                });
-//                console.log(parsedError);
-
-                // TODO: a afficher plus proprement
-                $("#error").text(parsedError['responseText']);
-            }
-        });
-
-        e.preventDefault(); // avoid to execute the actual submit of the form.
-    });
-</script>
 </body>
 </html>
