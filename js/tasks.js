@@ -1,6 +1,5 @@
-// this is the id of the form
 $(document).ready(function(e) {
-    console.log('ready');
+    // console.log('ready');
 
     function countTodos(){
         var count = $("#sortable li").length;
@@ -19,9 +18,7 @@ $(document).ready(function(e) {
     };
 
     var apiKey = $.urlParam('apiKey');
-    console.log(apiKey);
-
-    var url = "http://localhost/projects-oss/tasks-manager-api/v1/tasks"; // the script where you handle the form input.
+    var url = "http://localhost/projects-oss/tasks-manager-api/v1/tasks";
 
     var getAllTasks = function () {
         $.ajax({
@@ -36,7 +33,7 @@ $(document).ready(function(e) {
                 $.each(data, function(i, item){
                     parsedData[i] = item;
                 });
-                console.log(parsedData);
+                // console.log(parsedData);
 //                console.log(parsedData['tasks']);
 
                 if (parsedData['tasks'] != null) {
@@ -45,7 +42,7 @@ $(document).ready(function(e) {
                         tasks[i] = item;
 //                        console.log(tasks[i]['task']);
 
-                        $("#sortable").append("<li class='ui-state-default'><div class='checkbox'><label><input type='checkbox' value='' />"+ tasks[i]['task'] +"</label></div></li>");
+                        $("#sortable").append("<li class='ui-state-default'><div class='checkbox'><p>" + tasks[i]['task'] +"</p><p class='task-id' style='display: none;'>"+ tasks[i]['id']+ "</p><button type='button' class='deleteTask btn btn-danger' title='Supprimer'><i class='glyphicon glyphicon-trash'></i></button><button type='button' class='modifyTask btn btn-warning' title='Modifier'><i class='glyphicon glyphicon-pencil'></i></button></div></li>");
 
                     });
                     countTodos();
@@ -69,9 +66,9 @@ $(document).ready(function(e) {
 
     getAllTasks();
 
-    var urladd = 'http://localhost/projects-oss/tasks-manager-api/v1/tasks';
-
     $('#addTask').click(function(e) {
+        var urladd = 'http://localhost/projects-oss/tasks-manager-api/v1/tasks';
+
         $.ajax({
             type: 'POST',
             url: urladd,
@@ -82,6 +79,31 @@ $(document).ready(function(e) {
             success: function(data)
             {
                 location.reload();
+            }
+        });
+    });
+
+    $('#sortable').on('click', '.deleteTask', function() {
+        var taskId = $(this).prev().text();
+        var urldelete = 'http://localhost/projects-oss/tasks-manager-api/v1/tasks/'+taskId;
+
+        $.ajax({
+            type: 'DELETE',
+            url: urldelete,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', apiKey);
+            },
+            success: function(data)
+            {
+                console.log(data);
+                location.reload();
+            },
+            error: function (error) {
+                var parsedError = [];
+                $.each(error, function(i, item){
+                    parsedError[i] = item;
+                });
+                console.log(parsedError);
             }
         });
     });

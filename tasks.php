@@ -23,6 +23,7 @@ include_once 'header.php';
                     <strong><span class="count-todos"></span></strong> Items Left
                 </div>
             </div>
+            <a href="http://localhost/projects-oss/tasks-manager-website/login.php"><button type="button" class="return btn btn-info">Retour à la page d'authentification</button></a>
         </div>
         <!--<div class="col-md-6">
             <div class="todolist">
