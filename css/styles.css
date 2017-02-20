@@ -145,6 +145,7 @@ li.ui-state-default:last-child{
     float: right;
 }
 .btn {
+    margin-top: 10px !important;
     margin-right: 10px;
 }
 .glyphicon-share-alt {
@@ -155,4 +156,10 @@ li.ui-state-default:last-child{
 }
 .label-task {
     width: 100%;
+}
+.task-bloc {
+    position: relative;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
